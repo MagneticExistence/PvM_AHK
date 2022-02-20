@@ -28,15 +28,6 @@ display_current_profile()
         MsgBox, 0, , The current profile is %profile% Rago, 1.2
 
     if (global profile = 6)
-        MsgBox, 0, , The current profile is %profile% Raksha, 1.2
-
-    if (global profile = 7)
-        MsgBox, 0, , The current profile is %profile% Glacor, 1.2
-
-    if (global profile = 8)
-        MsgBox, 0, , The current profile is %profile% Zuk, 1.2
-
-    if (global profile = 9)
         MsgBox, 0, , The current profile is %profile% PvM, 1.2
     Return
 }
@@ -66,7 +57,7 @@ F16::
 Return
 
 ; AOD base
-F23::
+F17::
     global profile := 4
     display_current_profile()
 Return
@@ -77,27 +68,9 @@ F18::
     display_current_profile()
 Return
 
-; Raksha
+; PvM
 F19::
     global profile := 6
-    display_current_profile()
-Return
-
-; Glacor
-F20::
-    global profile := 7
-    display_current_profile()
-Return
-
-; Zuk
-F21::
-    global profile := 8
-    display_current_profile()
-Return
-
-; PvM
-F22::
-    global profile := 9
     display_current_profile()
 Return
 
@@ -418,19 +391,6 @@ F9::
         Send {%eof% down}
         Sleep, % ran(1,2)
         Send {%smoke_cloud% up}
-        Sleep, % ran(1,2)
-        Send {%deto% up}
-        Sleep, % ran(1,2)
-        Send {%eof% up}
-    }
-    if (profile = 3) {
-        Send {%auto% down}
-        Sleep, % ran(1,2)
-        Send {%deto% down}
-        Sleep, % ran(1,2)
-        Send {%eof% down}
-        Sleep, % ran(1,2)
-        Send {%auto% up}
         Sleep, % ran(1,2)
         Send {%deto% up}
         Sleep, % ran(1,2)

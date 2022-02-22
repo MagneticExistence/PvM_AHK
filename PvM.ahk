@@ -220,7 +220,7 @@ return
      ]::]
     }
     else {
-        if (Item_Check("offhand") = 0) {
+        if (Item_Check("offhand") = 0) or (Item_Check("excal") = 0) {
         Send {%mainhand% down}
         Sleep, % ran(1,2)
         Send {%mainhand% up}
@@ -244,7 +244,7 @@ return
      home::home
     }
     else {
-        if (Item_Check("offhand") = 0) {
+        if (Item_Check("offhand") = 0) or (Item_Check("excal") = 0) {
         Send {%mainhand% down}
         Sleep, % ran(1,2)
         Send {%mainhand% up}
@@ -270,7 +270,7 @@ F1::
      Send {F1 up}
     }
     else {
-        if (Item_Check("offhand") = 0) {
+        if (Item_Check("offhand") = 0) or (Item_Check("excal") = 0) {
         Send {%mainhand% down}
         Sleep, % ran(1,2)
         Send {%mainhand% up}

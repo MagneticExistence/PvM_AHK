@@ -142,10 +142,6 @@ F4::
     }
     ; auto deto hammer bladed dive for vorago
     if (profile = 5) {
-        Send {%auto% down}
-        Sleep, % ran(1,2)
-        Send {%auto% up}
-        Sleep, % ran(1,2)
         Send {%deto% down}
         Sleep, % ran(1,2)
         Send {%deto% up}
@@ -183,9 +179,9 @@ F4::
         Sleep, % ran(1,2)
         Send {%deto% up}
         Sleep, % ran(1,2)
-        Send {%omnipower% down}
+        Send {%omni% down}
         Sleep, % ran(1,2)
-        Send {%omnipower% up}
+        Send {%omni% up}
     }
     ; bladed dive-surge for AOD pillars
     if (profile = 3) {

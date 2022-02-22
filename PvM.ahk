@@ -1,12 +1,15 @@
 Menu, Tray, Icon, %A_ScriptDir%\icons\rs.jpg
 #include, dependencies\variables.ahk
 #include, dependencies\random.ahk
+#include, dependencies\imagesearch.ahk
 #MaxThreadsPerHotkey 2
 #SingleInstance Force
 #IfWinActive RuneScape
 
+; sets the default profile to 0 so no scripts are active
 profile := 0
 
+; creates on screen message for profile change
 display_current_profile()
 {
     if (global profile = 0) 
@@ -27,11 +30,12 @@ display_current_profile()
     if (global profile = 5)
         MsgBox, 0, , The current profile is %profile% Rago, 1.2
 
-    if (global profile = 6)
+    if (global profile = 9)
         MsgBox, 0, , The current profile is %profile% PvM, 1.2
     Return
 }
 
+; hot keys below change binds profile
 ; default
 F13::
     global profile :=0
@@ -57,7 +61,7 @@ F16::
 Return
 
 ; AOD base
-F17::
+F23::
     global profile := 4
     display_current_profile()
 Return
@@ -69,24 +73,12 @@ F18::
 Return
 
 ; PvM
-F19::
-    global profile := 6
+F22::
+    global profile := 9
     display_current_profile()
 Return
 
 global skip_check := 0
-
-; checks for main hand inventory slot
-MH_check() {
-    CoordMode, Pixel, Screen
-    ImageSearch, , , 1841, 896, 1876, 931, *35 *TransBlack C:\Users\awtar\OneDrive\Documents\RS3\ahk\images\MH_empty.png
-    if (ErrorLevel = 0 || global skip_check = 1) {
-        return 0
-    }
-    else {
-        return 1
-    }
-}
 
 ; Disrupt
 F2::
@@ -96,9 +88,9 @@ F2::
     else {
         Send {%swap% down}
         Sleep, % ran(1,2)
-        Send {%disrupt% down}
-        Sleep, % ran(1,2)
         Send {%swap% up}
+        Sleep, % ran(1,2)
+        Send {%disrupt% down}
         Sleep, % ran(1,2)
         Send {%disrupt% up}
     }
@@ -112,9 +104,9 @@ if (profile = 0) {
     else {
         Send {%swap% down}
         Sleep, % ran(1,2)
-        Send {%venge% down}
-        Sleep, % ran(1,2)
         Send {%swap% up}
+        Sleep, % ran(1,2)
+        Send {%venge% down}
         Sleep, % ran(1,2)
         Send {%venge% up}
     }
@@ -124,73 +116,88 @@ return
 F4::
     ; hybrid switch for solak
     if (profile = 2) {
-        Send {4 down}
+        Send {%hybrid_prayer% down}
         Sleep, % ran(1,2)
-        Send {%sgb% down}
+        Send {%hybrid_prayer% up}
+        Sleep, % ran(1,2)
+        Send {%helm% down}
+        Sleep, % ran(1,2)
+        Send {%helm% up}
         Sleep, % ran(1,2)
         Send {%body% down}
         Sleep, % ran(1,2)
-        Send {%legs% down}
-        Sleep, % ran(1,2)
-        Send {8 down}
-        Sleep, % ran(1,2)
-        Send {h down}
-        Sleep, % ran(1,2)
-        Send {4 up}
-        Sleep, % ran(1,2)
-        Send {%sgb% up}
-        Sleep, % ran(1,2)
         Send {%body% up}
+        Sleep, % ran(1,2)
+        Send {%legs% down}
         Sleep, % ran(1,2)
         Send {%legs% up}
         Sleep, % ran(1,2)
-        Send {8 up}
+        Send {%boots% down}
         Sleep, % ran(1,2)
-        Send {h up}
+        Send {%boots% up}
+        Sleep, % ran(1,2)
+        Send {%melee_2h% down}
+        Sleep, % ran(1,2)
+        Send {%melee_2h% up}
     }
-    ; deto hammer for vorago
+    ; auto deto hammer bladed dive for vorago
     if (profile = 5) {
+        Send {%auto% down}
+        Sleep, % ran(1,2)
+        Send {%auto% up}
+        Sleep, % ran(1,2)
         Send {%deto% down}
         Sleep, % ran(1,2)
         Send {%deto% up}
         Sleep, % ran(1,2)
         Send {%melee_mainhand% down}
         Sleep, % ran(1,2)
-        Send {%ingen% down}
-        Sleep, % ran(1,2)
-        Send {%eof% down}
-        Sleep, % ran(1,2)
         Send {%melee_mainhand% up}
+        Sleep, % ran(1,2)
+        Send {%excalibur% down}
+        Sleep, % ran(1,2)
+        Send {%excalibur% up}
+        Sleep, % ran(1,2)
+        Send {%ingen% down}
         Sleep, % ran(1,2)
         Send {%ingen% up}
         Sleep, % ran(1,2)
+        Send {%eof% down}
+        Sleep, % ran(1,2)
         Send {%eof% up}
+        Send {%bladed_dive% down}
+        Sleep, % ran(1,2)
+        Send {%bladed_dive% up}
+        Sleep, % ran(1,2)
+        Send {Click down}
+        Sleep, % ran(1,2)
+        Send {Click up}
     }
     ; AOD base start with omnipower
     if (profile = 4) {
         Send {%smoke_cloud% down}
         Sleep, % ran(1,2)
-        Send {%deto% down}
-        Sleep, % ran(1,2)
-        Send {%omni% down}
-        Sleep, % ran(1,2)
         Send {%smoke_cloud% up}
+        Sleep, % ran(1,2)
+        Send {%deto% down}
         Sleep, % ran(1,2)
         Send {%deto% up}
         Sleep, % ran(1,2)
-        Send {%omni% up}
+        Send {%omnipower% down}
+        Sleep, % ran(1,2)
+        Send {%omnipower% up}
     }
     ; bladed dive-surge for AOD pillars
     if (profile = 3) {
         Send {%melee_mainhand% down}
         Sleep, % ran(1,2)
-        Send {%excalibur% down}
-        Sleep, % ran(1,2)
-        Send {%bladed_dive% down}
-        Sleep, % ran(1,2)
         Send {%melee_mainhand% up}
         Sleep, % ran(1,2)
+        Send {%excalibur% down}
+        Sleep, % ran(1,2)
         Send {%excalibur% up}
+        Sleep, % ran(1,2)
+        Send {%bladed_dive% down}
         Sleep, % ran(1,2)
         Send {%bladed_dive% up}
         Sleep, % ran(1,2)
@@ -213,18 +220,18 @@ return
      ]::]
     }
     else {
-        if (MH_check() = 0) {
+        if (Item_Check("offhand") = 0) {
+        Send {%mainhand% down}
+        Sleep, % ran(1,2)
+        Send {%mainhand% up}
+        Sleep, % ran(1,2)
         Send {%offhand% down}
         Sleep, % ran(1,2)
         Send {%offhand% up}
         skip_check := 0
         }
         else{
-        Send {%mainhand% down}
-        Sleep, % ran(1,2)
         Send {%offhand% down}
-        Sleep, % ran(1,2)
-        Send {%mainhand% up}
         Sleep, % ran(1,2)
         Send {%offhand% up}
         }
@@ -237,18 +244,18 @@ return
      home::home
     }
     else {
-        if (MH_check() = 0) {
+        if (Item_Check("offhand") = 0) {
+        Send {%mainhand% down}
+        Sleep, % ran(1,2)
+        Send {%mainhand% up}
+        Sleep, % ran(1,2)
         Send {%flank% down}
         Sleep, % ran(1,2)
         Send {%flank% up}
         skip_check := 0
         }
         else{
-        Send {%mainhand% down}
-        Sleep, % ran(1,2)
         Send {%flank% down}
-        Sleep, % ran(1,2)
-        Send {%mainhand% up}
         Sleep, % ran(1,2)
         Send {%flank% up}
         }
@@ -263,18 +270,18 @@ F1::
      Send {F1 up}
     }
     else {
-        if (MH_check() = 0) {
+        if (Item_Check("offhand") = 0) {
+        Send {%mainhand% down}
+        Sleep, % ran(1,2)
+        Send {%mainhand% up}
+        Sleep, % ran(1,2)
         Send {%shield% down}
         Sleep, % ran(1,2)
         Send {%shield% up}
         skip_check := 0
         }
         else{
-        Send {%mainhand% down}
-        Sleep, % ran(1,2)
         Send {%shield% down}
-        Sleep, % ran(1,2)
-        Send {%mainhand% up}
         Sleep, % ran(1,2)
         Send {%shield% up}
         }
@@ -291,34 +298,34 @@ end::
     else {
         Send {%melee_mainhand% down}
         Sleep, % ran(1,2)
-        Send {%excalibur% down}
-        Sleep, % ran(1,2)
-        Send {%bladed_dive% down}
-        Sleep, % ran(1,2)
         Send {%melee_mainhand% up}
         Sleep, % ran(1,2)
+        Send {%excalibur% down}
+        Sleep, % ran(1,2)
         Send {%excalibur% up}
+        Sleep, % ran(1,2)
+        Send {%bladed_dive% down}
         Sleep, % ran(1,2)
         Send {%bladed_dive% up}
     }
 return
 
-; AOD ent sgb no sirenic switch
+; AOD sgb spec no sirenic switch
 Del::
         if (profile = 3) {
         Send {%sgb% down}
         Sleep, % ran(1,2)
-        Send {%ranged_prayer% down}
-        Sleep, % ran(1,2)
-        Send {%ingen% down}
-        Sleep, % ran(1,2)
-        Send {%eof% down}
-        Sleep, % ran(1,2)
         Send {%sgb% up}
+        Sleep, % ran(1,2)
+        Send {%ranged_prayer% down}
         Sleep, % ran(1,2)
         Send {%ranged_prayer% up}
         Sleep, % ran(1,2)
+        Send {%ingen% down}
+        Sleep, % ran(1,2)
         Send {%ingen% up}
+        Sleep, % ran(1,2)
+        Send {%eof% down}
         Sleep, % ran(1,2)
         Send {%eof% up}
         Sleep, % ran(1,2)
@@ -326,29 +333,29 @@ Del::
         Sleep, % ran(1,2)
         Send {%mage_prayer% up}
     }
-; AOD base sgb with sirenic switch
+; AOD sgb spec with sirenic switch
         if (profile = 4) {
         Send {%sgb% down}
         Sleep, % ran(1,2)
-        Send {%body% down}
-        Sleep, % ran(1,2)
-        Send {%legs% down}
-        Sleep, % ran(1,2)
-        Send {%ranged_prayer% down}
-        Sleep, % ran(1,2)
-        Send {%ingen% down}
-        Sleep, % ran(1,2)
-        Send {%eof% down}
-        Sleep, % ran(1,2)
         Send {%sgb% up}
+        Sleep, % ran(1,2)
+        Send {%body% down}
         Sleep, % ran(1,2)
         Send {%body% up}
         Sleep, % ran(1,2)
+        Send {%legs% down}
+        Sleep, % ran(1,2)
         Send {%legs% up}
+        Sleep, % ran(1,2)
+        Send {%ranged_prayer% down}
         Sleep, % ran(1,2)
         Send {%ranged_prayer% up}
         Sleep, % ran(1,2)
+        Send {%ingen% down}
+        Sleep, % ran(1,2)
         Send {%ingen% up}
+        Sleep, % ran(1,2)
+        Send {%eof% down}
         Sleep, % ran(1,2)
         Send {%eof% up}
         Sleep, % ran(1,2)
@@ -366,33 +373,48 @@ pgup::
     if (profile = 3) {
         Send {%auto% down}
         Sleep, % ran(1,2)
-        Send {%deto% down}
+        Send {%auto% up}
         Sleep, % ran(1,2)
-        Send {%wild_magic% down}
+        Send {%deto% down}
         Sleep, % ran(1,2)
         Send {%deto% up}
         Sleep, % ran(1,2)
-        Send {%wild_magic% up}
+        Send {%wild_magic% down}
         Sleep, % ran(1,2)
-        Send {%auto% up}
+        Send {%wild_magic% up} 
     }
     else {
         pgup::pgup
     }
 return
 
-; AOD base start gstaff
+
 F9::
+; AOD base start gstaff
     if (profile = 4) {
         Send {%smoke_cloud% down}
         Sleep, % ran(1,2)
+        Send {%smoke_cloud% up}
+        Sleep, % ran(1,2)
         Send {%deto% down}
+        Sleep, % ran(1,2)
+        Send {%deto% up}
         Sleep, % ran(1,2)
         Send {%eof% down}
         Sleep, % ran(1,2)
-        Send {%smoke_cloud% up}
+        Send {%eof% up}
+    }
+; AOD deto gstaff for ent amalg if wm on cooldown
+    if (profile = 3) {
+        Send {%auto% down}
+        Sleep, % ran(1,2)
+        Send {%auto% up}
+        Sleep, % ran(1,2)
+        Send {%deto% down}
         Sleep, % ran(1,2)
         Send {%deto% up}
+        Sleep, % ran(1,2)
+        Send {%eof% down}
         Sleep, % ran(1,2)
         Send {%eof% up}
     }

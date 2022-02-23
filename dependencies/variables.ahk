@@ -1,4 +1,4 @@
-﻿; Items
+; Items
 melee_mainhand := "j"
 excalibur := "k"
 sgb := "l"
@@ -29,3 +29,5 @@ auto := ":"
 surge := "1"
 eof := "u"
 wild_magic := "A"
+ice_blitz := "4"
+gconc := "s"

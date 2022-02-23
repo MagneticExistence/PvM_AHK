@@ -4,12 +4,24 @@
 Item_Check(Item){
     Switch Item
     { 
-      Case "offhand":
-         path := "images\offhand_empty.png"
-         X1 := 1733
-         Y1 := 944
-         X2 := 1748
-         Y2 := 959
+      Case "magic_MH":
+         path := "images\magic_MH.png"
+         X1 := 1851
+         Y1 := 907
+         X2 := 1866
+         Y2 := 922
+      Case "melee_MH":
+         path := "images\melee_MH.png"
+         X1 := 1852
+         Y1 := 906
+         X2 := 1867
+         Y2 := 921
+      Case "range_MH":
+         path := "images\range_MH.png"
+         X1 := 1852
+         Y1 := 906
+         X2 := 1867
+         Y2 := 921
       Default:
          path := ""
     }

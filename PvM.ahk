@@ -29,8 +29,11 @@ display_current_profile()
      
     if (global profile = 5)
         MsgBox, 0, , The current profile is %profile% Rago, 1.2
+    
+    if (global profile = 6)
+        MsgBox, 0, , The current profile is %profile% AOD Chin, 1.2
 
-    if (global profile = 9)
+    if (global profile = 7)
         MsgBox, 0, , The current profile is %profile% PvM, 1.2
     Return
 }
@@ -61,7 +64,7 @@ F16::
 Return
 
 ; AOD base
-F23::
+F17::
     global profile := 4
     display_current_profile()
 Return
@@ -72,9 +75,15 @@ F18::
     display_current_profile()
 Return
 
+; AOD Chin
+F19::
+    global profile := 6
+    display_current_profile()
+Return
+
 ; PvM
-F22::
-    global profile := 9
+F20::
+    global profile := 7
     display_current_profile()
 Return
 
@@ -114,7 +123,7 @@ return
 
 ; AOD and Solak Shit
 F4::
-    ; hybrid switch for solak
+    ; Hybrid switch for solak
     if (profile = 2) {
         Send {%hybrid_prayer% down}
         Sleep, % ran(1,2)
@@ -140,7 +149,7 @@ F4::
         Sleep, % ran(1,2)
         Send {%melee_2h% up}
     }
-    ; auto deto hammer bladed dive for vorago
+    ; Auto + Deto + Hammer
     if (profile = 5) {
         Send {%deto% down}
         Sleep, % ran(1,2)
@@ -169,7 +178,7 @@ F4::
         Sleep, % ran(1,2)
         Send {Click up}
     }
-    ; AOD base start with omnipower
+    ; Smoke Cloud + Deto + Omni
     if (profile = 4) {
         Send {%smoke_cloud% down}
         Sleep, % ran(1,2)
@@ -205,6 +214,28 @@ F4::
         Sleep, % ran(1,2)
         Send {%surge% up}
     }
+    ; ice auto + deto + gconc
+    if (profile = 1){
+        Send {%ice_blitz% down}
+        Sleep, % ran(1,2)
+        Send {%ice_blitz% up}
+        Sleep, % ran(1,2)
+        Send {%deto% down}
+        Sleep, % ran(1,2)
+        Send {%deto% up}
+        Sleep, % ran(1,2)
+        Send {%mainhand% down}
+        Sleep, % ran(1,2)
+        Send {%mainhand% up}
+        Sleep, % ran(1,2)
+        Send {%offhand% down}
+        Sleep, % ran(1,2)
+        Send {%offhand% up}
+        Sleep, % ran(1,2)
+        Send {%gconc% down}
+        Sleep, % ran(1,2)
+        Send {%gconc% up}
+    }
     else {
         F4::F4
     }
@@ -216,17 +247,17 @@ return
      ]::]
     }
     else {
-        if (Item_Check("offhand") = 0) or (Item_Check("excal") = 0) {
-        Send {%mainhand% down}
-        Sleep, % ran(1,2)
-        Send {%mainhand% up}
-        Sleep, % ran(1,2)
+        if (Item_Check("magic_MH") = 0 or Item_Check("melee_MH") = 0 or Item_Check("range_MH") = 0) {
         Send {%offhand% down}
         Sleep, % ran(1,2)
         Send {%offhand% up}
         skip_check := 0
         }
         else{
+        Send {%mainhand% down}
+        Sleep, % ran(1,2)
+        Send {%mainhand% up}
+        Sleep, % ran(1,2)
         Send {%offhand% down}
         Sleep, % ran(1,2)
         Send {%offhand% up}
@@ -240,17 +271,17 @@ return
      home::home
     }
     else {
-        if (Item_Check("offhand") = 0) or (Item_Check("excal") = 0) {
-        Send {%mainhand% down}
-        Sleep, % ran(1,2)
-        Send {%mainhand% up}
-        Sleep, % ran(1,2)
+        if (Item_Check("magic_MH") = 0 or Item_Check("melee_MH") = 0 or Item_Check("range_MH") = 0) {
         Send {%flank% down}
         Sleep, % ran(1,2)
         Send {%flank% up}
         skip_check := 0
         }
         else{
+        Send {%mainhand% down}
+        Sleep, % ran(1,2)
+        Send {%mainhand% up}
+        Sleep, % ran(1,2)
         Send {%flank% down}
         Sleep, % ran(1,2)
         Send {%flank% up}
@@ -266,17 +297,17 @@ F1::
      Send {F1 up}
     }
     else {
-        if (Item_Check("offhand") = 0) or (Item_Check("excal") = 0) {
-        Send {%mainhand% down}
-        Sleep, % ran(1,2)
-        Send {%mainhand% up}
-        Sleep, % ran(1,2)
+        if (Item_Check("magic_MH") = 0 or Item_Check("melee_MH") = 0 or Item_Check("range_MH") = 0) {
         Send {%shield% down}
         Sleep, % ran(1,2)
         Send {%shield% up}
         skip_check := 0
         }
         else{
+        Send {%mainhand% down}
+        Sleep, % ran(1,2)
+        Send {%mainhand% up}
+        Sleep, % ran(1,2)
         Send {%shield% down}
         Sleep, % ran(1,2)
         Send {%shield% up}
@@ -359,12 +390,34 @@ Del::
         Sleep, % ran(1,2)
         Send {%mage_prayer% up}
     }
+; Sonic + BD for telos phase
+        if (profile = 1) {
+        Send {d down}
+        Sleep, % ran(1,2)
+        Send {d up}
+        Sleep, % ran(1,2)
+        Send {%melee_mainhand% down}
+        Sleep, % ran(1,2)
+        Send {%melee_mainhand% up}
+        Sleep, % ran(1,2)
+        Send {%excalibur% down}
+        Sleep, % ran(1,2)
+        Send {%excalibur% up}
+        Sleep, % ran(1,2)
+        Send {%bladed_dive% down}
+        Sleep, % ran(1,2)
+        Send {%bladed_dive% up}
+        Sleep, % ran(1,2)
+        Send {Click down}
+        Sleep, % ran(1,2)
+        Send {Click up}
+        }
     else {
         Del::Del
     }
 return
 
-; auto deto wild magic
+; Auto + Deto + Wild Magic
 pgup::
     if (profile = 3) {
         Send {%auto% down}
@@ -386,7 +439,7 @@ return
 
 
 F9::
-; AOD base start gstaff
+; Smoke cloud + Deto + Gstaff
     if (profile = 4) {
         Send {%smoke_cloud% down}
         Sleep, % ran(1,2)
@@ -400,7 +453,7 @@ F9::
         Sleep, % ran(1,2)
         Send {%eof% up}
     }
-; AOD deto gstaff for ent amalg if wm on cooldown
+; Auto + Deto + Gstaff
     if (profile = 3) {
         Send {%auto% down}
         Sleep, % ran(1,2)
